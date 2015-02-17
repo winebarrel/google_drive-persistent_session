@@ -13,6 +13,7 @@ module GoogleDrive
 
     THREAD_KEY = "#{self.to_s}::THREAD_KEY"
     DEFAULE_CREDENTIAL_STORE_FILE = '~/.google_drive-oauth2.json'
+    REFRESH_BUFFER = 300
 
     class << self
       def credential_store_file
@@ -36,7 +37,7 @@ module GoogleDrive
     private
 
     def ensure_login
-      unless is_credential_stored?
+      unless credential_stored?
         create_credential_store_file
       end
 
@@ -53,12 +54,12 @@ module GoogleDrive
       end
     end
 
-    def is_credential_stored?
+    def credential_stored?
       ::File.exist?(self.class.credential_store_file)
     end
 
     def expired?(credential)
-      credential.issued_at + credential.expires_in <= Time.new
+      credential.issued_at + credential.expires_in - REFRESH_BUFFER <= Time.new
     end
 
     def create_credential_store_file
