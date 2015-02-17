@@ -12,12 +12,16 @@ module GoogleDrive
     def_delegator :@highline, :ask
 
     THREAD_KEY = "#{self.to_s}::THREAD_KEY"
-
     DEFAULE_CREDENTIAL_STORE_FILE = '~/.google_drive-oauth2.json'
-    @credential_store_file = ::File.expand_path(DEFAULE_CREDENTIAL_STORE_FILE)
 
     class << self
-      attr_accessor :credential_store_file
+      def credential_store_file
+        @credential_store_file ||= ::File.expand_path(DEFAULE_CREDENTIAL_STORE_FILE)
+      end
+
+      def credential_store_file=(value)
+        @credential_store_file = value
+      end
 
       def login
         self.new
