@@ -23,7 +23,7 @@ Or install it yourself as:
 ```ruby
 require 'google_drive/persistent_session'
 
-#GoogleDrive::PersistentSession.credential_store_file = '~/.google_drive-oauth2.json'
+#GoogleDrive::CredentialStorage.store = Google::APIClient::FileStore.new('~/.google_drive-oauth2.json')
 
 session = GoogleDrive::PersistentSession.login
 

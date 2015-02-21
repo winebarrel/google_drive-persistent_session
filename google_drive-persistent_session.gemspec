@@ -1,10 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'google_drive/persistent_session/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'google_drive-persistent_session'
-  spec.version       = '0.1.2'
+  spec.version       = GoogleDrive::PersistentSession::VERSION
   spec.authors       = ['Genki Sugawara']
   spec.email         = ['sgwr_dts@yahoo.co.jp']
   spec.summary       = %q{Persist credential for google-drive-ruby.}
