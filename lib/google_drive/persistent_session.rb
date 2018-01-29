@@ -1,6 +1,5 @@
 require 'fileutils'
 require 'forwardable'
-require 'google/api_client'
 require 'google_drive'
 require 'highline'
 
