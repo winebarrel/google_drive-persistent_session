@@ -1,3 +1,5 @@
+require 'google/api_client/auth/storage'
+
 module GoogleDrive::CredentialStorage
   DEFAULE_FILE_STORE_PATH = '~/.google_drive-oauth2.json'
 

@@ -18,8 +18,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'google-api-client', '~> 0.8.0'
-  spec.add_dependency 'google_drive', '~> 1.0'
+  spec.add_dependency 'google-api-client', '>= 0.9.0'
+  spec.add_dependency 'google_drive', '>= 2.0.0'
   spec.add_dependency 'highline'
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'

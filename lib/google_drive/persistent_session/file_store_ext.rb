@@ -1,3 +1,5 @@
+require 'google/api_client/auth/storages/file_store'
+
 class Google::APIClient::FileStore
   alias write_credentials_orig write_credentials
 
