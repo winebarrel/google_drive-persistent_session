@@ -21,9 +21,7 @@ class GoogleDrive::PersistentSession
     store_credential unless credential_stored?
     credential = storage.authorize
 
-    if !credential.access_token
-      fetch_access_token(credential)
-    elsif credential.expired?
+    if credential.expired?
       refresh(credential)
     end
 
@@ -37,24 +35,22 @@ class GoogleDrive::PersistentSession
     client_secret = ask('Enter CLIENT SECRET: ') {|q| q.echo = false }
     puts # line break
 
-    credential = Signet::OAuth2::Client.new(
+    credential =  Google::Auth::UserRefreshCredentials.new(
       :client_id => client_id,
       :client_secret => client_secret,
-      :refresh_token => ''
+      :scope => [
+        'https://www.googleapis.com/auth/drive',
+        'https://spreadsheets.google.com/feeds/'
+      ],
+      :redirect_uri => 'urn:ietf:wg:oauth:2.0:oob',
+      :grant_type => 'authorization_code'
     )
 
+    fetch_access_token(credential)
     storage.write_credentials(credential)
   end
 
   def fetch_access_token(credential)
-    credential.scope = %w(
-      https://www.googleapis.com/auth/drive
-      https://spreadsheets.google.com/feeds/
-    ).join(' ')
-
-    credential.redirect_uri = 'urn:ietf:wg:oauth:2.0:oob'
-    credential.grant_type = 'authorization_code'
-
     message =  "1. Open this page:\n%s\n\n" % credential.authorization_uri
     message << "2. Enter the authorization code shown in the page: "
     credential.code = ask(message)

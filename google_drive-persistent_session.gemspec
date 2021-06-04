@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'google_drive-persistent_session'
   spec.version       = GoogleDrive::PersistentSession::VERSION
   spec.authors       = ['Genki Sugawara']
-  spec.email         = ['sgwr_dts@yahoo.co.jp']
+  spec.email         = ['sugawara@winebarrel.jp']
   spec.summary       = %q{Persist credential for google-drive-ruby.}
   spec.description   = %q{Persist credential for google-drive-ruby.}
   spec.homepage      = 'https://github.com/winebarrel/google_drive-persistent_session'
@@ -18,8 +18,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'google-api-client', '>= 0.9.0'
-  spec.add_dependency 'google_drive', '>= 2.0.0'
+  spec.add_dependency 'google_drive', '>= 3.0.7'
   spec.add_dependency 'highline'
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
